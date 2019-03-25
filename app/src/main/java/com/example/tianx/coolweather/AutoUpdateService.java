@@ -45,7 +45,9 @@ public class AutoUpdateService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-
+    /**
+     * 更新天气信息
+     */
     private void updateWeather() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherString = prefs.getString("weather", null);
@@ -78,7 +80,9 @@ public class AutoUpdateService extends Service {
         }
     }
 
-
+    /**
+     * 更新必应每日一图
+     */
     private void updateBingPic() {
         String requestBingPic = "http://guolin.tech/api/bing_pic";
         HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
