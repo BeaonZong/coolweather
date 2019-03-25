@@ -35,7 +35,7 @@ import okhttp3.Response;
  */
 
 public class chooseAreaFragment extends Fragment {
-    public static final int LEVEL_PROVINCE  =0;
+    public static final int LEVEL_PROVINCE = 0;
     public static final int LEVEL_CITY = 1;
     public static final int LEVEL_COUNTY = 2;
     private ProgressDialog progressDialog;
@@ -69,7 +69,7 @@ public class chooseAreaFragment extends Fragment {
     /**
      * 选中的县
      */
-    private  County selectedCounty;
+    private County selectedCounty;
     /**
      * 当前选中的级别
      */
@@ -100,10 +100,20 @@ public class chooseAreaFragment extends Fragment {
                     querryCounties();
                 } else if (currentLevel == LEVEL_COUNTY) {
                     String weatherId = countyList.get(i).getWeatherId();
-                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
-                    intent.putExtra("weather_id", weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
+
+                    if (getActivity() instanceof MainActivity) {
+
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weather_id", weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else if (getActivity() instanceof WeatherActivity) {
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.swipeRefresh.setRefreshing(true);
+                        activity.requestWeather(weatherId);
+                    }
+
                 }
             }
         });
@@ -161,7 +171,7 @@ public class chooseAreaFragment extends Fragment {
         } else {
             int provinceCode = selectedProvince.getProvinceCode();
             String address = "http://guolin.tech/api/china/" + provinceCode;
-            queryFromServer(address,"city");
+            queryFromServer(address, "city");
         }
     }
 
@@ -256,8 +266,6 @@ public class chooseAreaFragment extends Fragment {
             progressDialog.dismiss();
         }
     }
-
-
 
 
 }
