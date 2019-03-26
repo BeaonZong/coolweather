@@ -1,4 +1,4 @@
-package com.example.tianx.coolweather;
+package com.example.tianx.coolweather.service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -8,9 +8,7 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.tianx.coolweather.gson.Weather;
 import com.example.tianx.coolweather.util.HttpUtil;
 import com.example.tianx.coolweather.util.Utility;

@@ -3,7 +3,6 @@ package com.example.tianx.coolweather;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.view.GravityCompat;
@@ -23,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.tianx.coolweather.gson.Forecast;
 import com.example.tianx.coolweather.gson.Weather;
+import com.example.tianx.coolweather.service.AutoUpdateService;
 import com.example.tianx.coolweather.util.HttpUtil;
 import com.example.tianx.coolweather.util.Utility;
 
