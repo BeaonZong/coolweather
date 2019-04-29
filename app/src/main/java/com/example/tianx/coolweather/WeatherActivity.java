@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -144,7 +145,7 @@ public class WeatherActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String responseText = response.body().toString();
+                final String responseText = response.body().string();
                 final Weather weather = Utility.handleWeatherResponse(responseText);
                 runOnUiThread(new Runnable() {
                     @Override
@@ -201,8 +202,8 @@ public class WeatherActivity extends AppCompatActivity {
             pm25Text.setText(weather.aqi.city.pm25);
         }
 
-        String comfort = "舒适度" + weather.suggestion.comfort.toString();
-        String carWash = "洗车指数" + weather.suggestion.carWash.toString();
+        String comfort = "舒适度" + weather.suggestion.comfort.info;
+        String carWash = "洗车指数" + weather.suggestion.carWash.info;
         String sport = "运动建议" + weather.suggestion.sport.info;
         comfrotText.setText(comfort);
         carWashText.setText(carWash);
